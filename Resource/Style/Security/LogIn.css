@@ -1,0 +1,22 @@
+/* Estilo para el campo de texto del login */
+.LoginContainer {       
+    vertical-align: middle;
+    margin-bottom: 1%;    
+    margin-top: 5%;    
+}
+
+
+
+.LoginTitulo {
+    color: #1d4000;
+    font-weight: bold;
+    margin-top: 5%;
+    text-align: center;
+}
+
+
+.box{
+    border: 2px double #000000; 
+    background-color: #ffffff;  
+    border-radius: 10px;
+}

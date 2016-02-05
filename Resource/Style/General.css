@@ -1,0 +1,66 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    background-color: #f8f8f8;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+
+.center-btn { 
+    text-align: center;
+}
+
+.center-row{
+    text-align: center;
+}
+
+.progress{
+    display: none;
+}
+
+
+nav{
+    /*    background-color: #a2a2ff;*/
+}
+
+footer{
+    /*    background-color: #9090ff;*/
+}
+
+
+
+.invalid {
+    border-bottom:1px solid #ff6666;    
+}
+
+.messageInfo{
+    width: 100%;
+}
+
+.identificator{
+    display: none;
+}
+
+.buttonContainer{
+    height: auto !important; 
+}
+
+
+
+
+.buttonAction{
+    margin: 7px;
+}
+
+
+.rowTable{
+    cursor: pointer !important;
+}
+
+.rowTable:hover{
+    
+}
