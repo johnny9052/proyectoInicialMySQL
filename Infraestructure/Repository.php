@@ -168,7 +168,7 @@ class Repository extends Internationalization {
      * @return string Echo de resultado de la consulta en formato JSON, con variable res y conteniendo la talba
      * @param string $query Consulta a ejecutar     
      * @author Johnny Alexander Salazar
-     * @version 0.1
+     * @version 0.2
      */
     public function BuildPaginator($query) {
 
@@ -176,7 +176,7 @@ class Repository extends Internationalization {
 
         if ($resultado && pg_numrows($resultado) > 0) {
             //$cadenaHTML = "<table class='centered responsive-table striped'>";
-            $cadenaHTML= "<thead>";
+            $cadenaHTML = "<thead>";
             $cadenaHTML.= "<tr>";
             $cadenaHTML.= "<th data-field='sel'>registro #</th>";
 
@@ -189,29 +189,33 @@ class Repository extends Internationalization {
             $cadenaHTML .= "</thead>";
 
             $cadenaHTML .= "<tbody>";
+            
             for ($cont = 0; $cont < pg_numrows($resultado); $cont++) { //recorre registro por registro
                 //variable que contiene el tr con la funcion del selradio y el update data
-                $funcion = "<tr class='rowTable' onclick=showData([";
+                //$funcion = "<tr class='rowTable' onclick=showData([";
+                $funcion = "<tr class='rowTable' onclick=search(";
                 //variable que contiene los valores de los campos de la tabla
                 $campos = "";
                 //en el registro que se encuentre pinta sus campos y los saca para la funcion selradio y update data
                 for ($posreg = 0; $posreg < pg_num_fields($resultado); $posreg++) {//por cada valor del registro
-                    $funcion.='\'' . pg_result($resultado, $cont, $posreg) . "'"; //lo añade a la funcion updatedata
-
-
+                    //Si se quieren añadir todos los datos solo es quitar el if,
+                    //en este caso solo se esta colocando el id
+                    if ($posreg == 0) {
+                        $funcion.='\'' . pg_result($resultado, $cont, $posreg) . "'"; //lo añade a la funcion updatedata    
+                    }
                     if ($posreg > 0) {//omite el id para no mostrarlo en los campos de la tabla
                         $campos.="<td>" . pg_result($resultado, $cont, $posreg) . "</td>";
                     }
                     //VERIFICAR AQUI
-
-                    if ($posreg < pg_num_fields($resultado) - 1) { //si quedan mas parametros por recorrer pone una ,
-                        $funcion.=",";
-                    }
+//                    if ($posreg < pg_num_fields($resultado) - 1) { //si quedan mas parametros por recorrer pone una ,
+//                        $funcion.=",";
+//                    }
                 }
 
 
-                $funcion.= "]);showButton(false);>"; //finaliza la funcion updatedata
-                $cadenaHTML.=$funcion . "<td>".($cont+1)."</td>";
+                //$funcion.= "]);showButton(false);>"; //finaliza la funcion updatedata
+                $funcion.= ");>"; //finaliza la funcion updatedata
+                $cadenaHTML.=$funcion . "<td>" . ($cont + 1) . "</td>";
                 //$cadenaHTML.=$funcion;
                 $cadenaHTML.=$campos . "</tr>";
             }

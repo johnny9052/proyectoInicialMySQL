@@ -48,9 +48,11 @@ function showRoundedToast(message) {
  * @version 0.1
  */
 function showLoadBar(status) {
+
     if (status) {
-        $(".progress").fadeIn("slow");
+        $(".progress").show();
     } else {
+
         $(".progress").hide();
     }
 }
@@ -68,11 +70,13 @@ function showLoadBar(status) {
  */
 function Execute(dataSend, url, before, success) {
 
+
+
     $.ajax({
         type: 'post',
         url: "Controller/" + url + ".php",
         beforeSend: function () {
-            showLoadBar(true);
+            showLoadBar(true)
             if (before !== "") {
                 eval(before);
             }
@@ -96,8 +100,8 @@ function Execute(dataSend, url, before, success) {
                     break;
                 case undefined:
                 default :
-                    /*En el caso de que sea un listar info o pintar menu*/
-                    if (dataSend.action === "list" || dataSend.action === "menu") {
+                    /*En el caso de que sea un listar info, buscar o pintar menu*/
+                    if (dataSend.action === "list" || dataSend.action === "menu" || dataSend.action === "search") {
                         if (success !== "") {
                             eval(success);
                         }
@@ -111,8 +115,6 @@ function Execute(dataSend, url, before, success) {
         }
     });
 }
-
-
 
 
 function buildPaginator(info) {
@@ -364,6 +366,20 @@ function closeWindow(idModal) {
     idModal = DefaultModal(idModal);
     $('#' + idModal).closeModal();
     cleanForm(idModal);
+}
+
+
+/**
+ * Navega entre modales
+ * @param {String} close id del modal a cerrar
+ * @param {String} open id del modal a abrir
+ * @returns {void}
+ * @author Johnny Alexander Salazar
+ * @version 0.1
+ */
+function goNavigation(close, open) {
+    $('#' + close).closeModal();
+    $('#' + open).openModal();
 }
 
 

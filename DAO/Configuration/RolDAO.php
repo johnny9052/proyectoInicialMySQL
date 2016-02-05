@@ -34,4 +34,41 @@ class RolDAO {
         $this->repository->BuildPaginator($query);
     }
 
+    /**
+     * Ejecuta un buscar en la base de datos
+     *
+     * @return void      
+     * @author Johnny Alexander Salazar
+     * @version 0.1
+     */
+    public function Search(RolDTO $obj) {
+        $query = $this->repository->buildQuery("searchrol", array((int) $obj->getId()));
+        $this->repository->Execute($query);
+    }
+
+    /**
+     * Ejecuta un actualizar en la base de datos
+     *
+     * @return void      
+     * @author Johnny Alexander Salazar
+     * @version 0.1
+     */
+    public function Update(RolDTO $obj) {
+        $query = $this->repository->buildQuerySimply("updaterol", array((int) $obj->getId(),
+            (string) $obj->getName(), (string) $obj->getDescription()));
+        $this->repository->ExecuteTransaction($query);
+    }
+
+    /**
+     * Ejecuta un borrar en la base de datos
+     *
+     * @return void      
+     * @author Johnny Alexander Salazar
+     * @version 0.1
+     */
+    public function Delete(RolDTO $obj) {
+        $query = $this->repository->buildQuerySimply("deleterol", array((int) $obj->getId()));
+        $this->repository->ExecuteTransaction($query);
+    }
+
 }

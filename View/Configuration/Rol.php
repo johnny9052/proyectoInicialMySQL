@@ -70,7 +70,7 @@ and open the template in the editor.
                        onclick="update();"><i class="material-icons">edit</i></a>                                
 
                     <a class="buttonAction l4 btn-floating" id="btnSave" 
-                       onclick="delete();"><i class="material-icons">delete</i></a>    
+                       onclick="goNavigation('ModalNew', 'ModalConfirm');"><i class="material-icons">delete</i></a>    
 
                     <a class="buttonAction l4 btn-floating" 
                        onclick="closeWindow();"><i class="material-icons">cancel</i></a>                                
@@ -83,6 +83,21 @@ and open the template in the editor.
 
         <table  class="centered responsive-table striped" id="TblList">                        
         </table>
+
+
+
+        <!-- Modal Structure -->
+        <div id="ModalConfirm" class="modal">
+            <div class="modal-content">
+                <h4>Confirmar</h4>
+                <p>¿Seguro que desea eliminar el registro?</p>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat" onclick="deleteInfo();">Aceptar</a>
+                <a class=" modal-action modal-close waves-effect waves-green btn-flat" onclick="goNavigation('ModalConfirm', 'ModalNew');">Cancelar</a>
+            </div>
+        </div>
+
 
 
 
