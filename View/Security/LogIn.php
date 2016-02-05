@@ -35,16 +35,16 @@ and open the template in the editor.
                             <div class="input-field col s12">
                                 <input id="txtUser" name="user" type="text" value="" autocomplete="off" required
                                        placeholder="Usuario">
-                                <label class="messageInfo" for="user" data-error="Este campo es obligatorio" 
-                                       data-success=""></label>
+<!--                                <label class="messageInfo" for="user" data-error="Este campo es obligatorio" 
+                                       data-success=""></label>-->
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
                                 <input id="txtPassword" name="password" type="password" value="" autocomplete="off" required
                                        placeholder="Password">
-                                <label class="messageInfo" for="password" data-error="Este campo es obligatorio" data-success="">                                    
-                                </label>
+<!--                                <label class="messageInfo" for="password" data-error="Este campo es obligatorio" data-success="">                                    
+                                </label>-->
                             </div>
                         </div>
                         <div class="row center-btn">

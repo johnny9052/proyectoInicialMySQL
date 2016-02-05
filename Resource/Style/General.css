@@ -65,3 +65,10 @@ th{
 .updateActionButton{
     display: none;
 }
+
+
+.boxModal{
+    border: 1px solid #cccccc;     
+    border-radius: 5px;
+    margin-bottom: 10px;
+}

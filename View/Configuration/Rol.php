@@ -25,10 +25,10 @@ and open the template in the editor.
         <br>
         <br>
 
-        <div id="ModalNew" class="modal">
+        <div id="ModalNew" class="boxModal modal">
             <div class="modal-content">
                 <!-- CENTRAR LOS ELEMENTOS DEL FORMULARIO -->
-                <div class="container col s12" id="FormContainer">  
+                <div class="boxModal container col s12" id="FormContainer">  
 
                     <div class="input-field col s12">
                         <input id="txtId" name="id" class="identificator"  type="text" value="">                    
@@ -36,8 +36,7 @@ and open the template in the editor.
                     <div class="input-field col s12">
                         <input id="txtName" name="name" type="text" value="" autocomplete="off" required
                                placeholder="Nombre del rol">
-                        <!--<label class="messageInfo" for="name" data-error="Este campo es obligatorio" data-success="">-->                                
-                        </label>
+                        <!--                        <label class="messageInfo" for="name" data-error="Este campo es obligatorio" data-success=""></label>-->
                     </div>
 
                     <div class="input-field col s12">
