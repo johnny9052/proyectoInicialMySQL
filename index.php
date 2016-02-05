@@ -29,8 +29,8 @@ and open the template in the editor.
         <!--<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>-->
         <!--Import jQuery before materialize.js OFFLINE-->
         <script type="text/javascript" src="Resource/Framework/Jquery/jquery-2.1.1.min.js"></script>
-        
-        
+
+
 
         <!--Import materialize.js ONLINE-->
         <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>-->

@@ -21,7 +21,7 @@ and open the template in the editor.
         <ul id="slide-out" class="side-nav fixed">               
 
             <?php
-            include 'Helper/Menu/MenuHelper.php';
+                include 'Helper/Menu/MenuHelper.php';
             ?>        
 
         </ul>

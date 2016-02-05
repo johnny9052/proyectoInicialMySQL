@@ -81,10 +81,10 @@ and open the template in the editor.
 
 
 
-        <table  class="centered responsive-table striped" id="TblList">                        
+        <!--  striped      highlight-->
+
+        <table  class="centered bordered responsive-table highlight" id="TblList">                        
         </table>
-
-
 
         <!-- Modal Structure -->
         <div id="ModalConfirm" class="modal">
