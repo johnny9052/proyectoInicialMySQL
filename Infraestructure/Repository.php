@@ -178,7 +178,7 @@ class Repository extends Internationalization {
             //$cadenaHTML = "<table class='centered responsive-table striped'>";
             $cadenaHTML= "<thead>";
             $cadenaHTML.= "<tr>";
-            //$cadenaHTML.= "<th data-field='sel'>sel.</th>";
+            $cadenaHTML.= "<th data-field='sel'>registro #</th>";
 
             for ($cont = 1; $cont < pg_num_fields($resultado); $cont++) { //arma la cabecera de la tabla                
                 $cadenaHTML .= "<th data-field='" . pg_field_name($resultado, $cont) . "'>" . pg_field_name($resultado, $cont) . "</th>";
@@ -191,7 +191,7 @@ class Repository extends Internationalization {
             $cadenaHTML .= "<tbody>";
             for ($cont = 0; $cont < pg_numrows($resultado); $cont++) { //recorre registro por registro
                 //variable que contiene el tr con la funcion del selradio y el update data
-                $funcion = "<tr class='rowTable' onclick=%selRadio(" . pg_result($resultado, $cont, 0) . ");updateData([";
+                $funcion = "<tr class='rowTable' onclick=showData([";
                 //variable que contiene los valores de los campos de la tabla
                 $campos = "";
                 //en el registro que se encuentre pinta sus campos y los saca para la funcion selradio y update data
@@ -210,9 +210,9 @@ class Repository extends Internationalization {
                 }
 
 
-                $funcion.= "])%>"; //finaliza la funcion updatedata
-                //$cadenaHTML.=$funcion . "<td><input name='group1' type='radio' id='test1' /></td>";
-                $cadenaHTML.=$funcion;
+                $funcion.= "]);showButton(false);>"; //finaliza la funcion updatedata
+                $cadenaHTML.=$funcion . "<td>".($cont+1)."</td>";
+                //$cadenaHTML.=$funcion;
                 $cadenaHTML.=$campos . "</tr>";
             }
 

@@ -58,6 +58,10 @@ footer{
     cursor: pointer !important;
 }
 
-.rowTable:hover{
-    background-color: red;
+th{
+    text-transform: uppercase;
+}
+
+.updateActionButton{
+    display: none;
 }

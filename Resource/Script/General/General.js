@@ -115,7 +115,7 @@ function Execute(dataSend, url, before, success) {
 
 
 
-function buildPaginator(info) {    
+function buildPaginator(info) {
     $("#TblList").html(info[0].res);
 }
 
@@ -375,6 +375,7 @@ function closeWindow(idModal) {
  * @version 0.1
  */
 function openWindow(idModal) {
+    idModal = DefaultModal(idModal);
     $('#' + idModal).openModal();
 }
 
@@ -383,3 +384,12 @@ function DefaultModal(idModal) {
     return (idModal === undefined || idModal === "") ? 'ModalNew' : idModal;
 }
 
+function showButton(status) {
+    if (status) {
+        $(".newActionButton").show();
+        $(".updateActionButton").hide();
+    } else {
+        $(".newActionButton").hide();
+        $(".updateActionButton").show();
+    }
+}
