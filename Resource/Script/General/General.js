@@ -118,6 +118,43 @@ function Execute(dataSend, url, before, success) {
 }
 
 
+
+/**
+ * Scanea un formulario, detecta los input tipo text y password, y añade
+ * sus valores a un array para ser enviados por post. Adicionalmente añade por 
+ * defecto el valor type mandado por parametro 
+ * @param {String} type : Accion que se ejecutara en el server
+ * @param {String} form : Id del formulario donde se encuentran los inputs
+ * @param {Boolean} status : Determina si escanea los campos del formulario
+ * @returns {Object} Objeto o array nombrado que se enviara por POST
+ * @author Johnny Alexander Salazar
+ * @version 0.3
+ */
+function scanInfo(type, status, form) {
+
+    var arrayParameters = new Array();
+    form = defualtForm(form);
+    arrayParameters.push(newArg("action", type));
+
+    if (status) {
+        var campos = '#' + form + ' :input:text,\n\
+                  #' + form + ' :input:password, \n\
+                  #' + form + ' textarea, \n\
+                  #' + form + ' select';
+
+        $(campos).each(function () {
+            var elemento = this;
+            arrayParameters.push(newArg(elemento.name, elemento.value));
+        });
+    }
+
+    //alert(arrayParameters);
+    return arrayToObject(arrayParameters);
+}
+
+
+
+
 function buildPaginator(info) {
     $("#TblList").html(info[0].res);
 }
@@ -137,10 +174,14 @@ function buildSelect(info, idSelect) {
         combo.options[combo.length] = new Option(info[x].nombre, info[x].id);
     }
 
-    //$("#selRol").val(2);
-    $('#' + idSelect).material_select('destroy');
-    $('#' + idSelect).material_select();
+    refreshSelect(idSelect, -1);
 
+}
+
+function refreshSelect(id, val) {
+    $("#" + id).val(val);
+    $('#' + id).material_select('destroy');
+    $('#' + id).material_select();
 }
 
 
@@ -211,39 +252,6 @@ function defualtForm(form) {
 }
 
 
-
-
-/**
- * Scanea un formulario, detecta los input tipo text y password, y añade
- * sus valores a un array para ser enviados por post. Adicionalmente añade por 
- * defecto el valor type mandado por parametro 
- * @param {String} type : Accion que se ejecutara en el server
- * @param {String} form : Id del formulario donde se encuentran los inputs
- * @param {Boolean} status : Determina si escanea los campos del formulario
- * @returns {Object} Objeto o array nombrado que se enviara por POST
- * @author Johnny Alexander Salazar
- * @version 0.3
- */
-function scanInfo(type, status, form) {
-
-    var arrayParameters = new Array();
-    form = defualtForm(form);
-    arrayParameters.push(newArg("action", type));
-
-    if (status) {
-        var campos = '#' + form + ' :input:text,\n\
-                  #' + form + ' :input:password, \n\
-                  #' + form + ' textarea';
-
-        $(campos).each(function () {
-            var elemento = this;
-            arrayParameters.push(newArg(elemento.name, elemento.value));
-        });
-    }
-
-    //alert(arrayParameters);
-    return arrayToObject(arrayParameters);
-}
 
 
 /**

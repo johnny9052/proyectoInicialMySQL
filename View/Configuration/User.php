@@ -85,10 +85,7 @@ and open the template in the editor.
 
                     <div class="input-field col s12">
                         <select id="selRol" name="rol" required>
-                            <option value="" selected> -- SELECCIONE --</option>
-                            <option value="1">Option 1</option>
-                            <option value="2">Option 2</option>
-                            <option value="3">Option 3</option>
+                            <option value="-1" selected> -- SELECCIONE --</option>                            
                         </select>
                     </div>
 

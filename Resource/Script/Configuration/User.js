@@ -11,24 +11,29 @@ function loadRol() {
 
 function save() {
     if (validateForm() === true) {
-        Execute(scanInfo('save'), 'Configuration/CtlRol', '', 'closeWindow();list();');
+        Execute(scanInfo('save', true), 'Configuration/CtlUser', '', 'closeWindow();list();');
     }
 }
 
 function list() {
-    Execute(scanInfo('list'), 'Configuration/CtlRol', '', 'buildPaginator(info);');
+    Execute(scanInfo('list'), 'Configuration/CtlUser', '', 'buildPaginator(info);');
 }
 
 
 function search(id) {
     $("#txtId").val(id);
-    Execute(scanInfo('search'), 'Configuration/CtlRol', '', 'showData(info);');
+    Execute(scanInfo('search', true), 'Configuration/CtlUser', '', 'showData(info);');
 }
 
 
 function showData(info) {
     $("#txtId").val(info[0].id);
-    $("#txtName").val(info[0].nombre);
+    $("#txtFirstName").val(info[0].primer_nombre);
+    $("#txtSecondName").val(info[0].segundo_nombre);
+    $("#txtFirstLastName").val(info[0].primer_apellido);
+    $("#txtSecondLastName").val(info[0].segundo_apellido);
+    $("#txtUser").val(info[0].usuario);
+    refreshSelect("selRol", info[0].rol);
     $("#txtDescription").val(info[0].descripcion);
     openWindow();
     showButton(false);
@@ -37,13 +42,13 @@ function showData(info) {
 
 function update() {
     if (validateForm() === true) {
-        Execute(scanInfo('update'), 'Configuration/CtlRol', '', 'closeWindow();list();');
+        Execute(scanInfo('update', true), 'Configuration/CtlRol', '', 'closeWindow();list();');
     }
 }
 
 
 function deleteInfo() {
     if (validateForm() === true) {
-        Execute(scanInfo('delete'), 'Configuration/CtlRol', '', 'closeWindow();list();');
+        Execute(scanInfo('delete', true), 'Configuration/CtlRol', '', 'closeWindow();list();');
     }
 }

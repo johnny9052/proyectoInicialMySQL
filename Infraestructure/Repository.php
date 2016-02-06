@@ -180,8 +180,9 @@ class Repository extends Internationalization {
             $cadenaHTML.= "<tr>";
             $cadenaHTML.= "<th data-field='sel'>registro #</th>";
 
-            for ($cont = 1; $cont < pg_num_fields($resultado); $cont++) { //arma la cabecera de la tabla                
-                $cadenaHTML .= "<th data-field='" . pg_field_name($resultado, $cont) . "'>" . pg_field_name($resultado, $cont) . "</th>";
+            for ($cont = 1; $cont < pg_num_fields($resultado); $cont++) { //arma la cabecera de la tabla
+                //Coloca la cabecera reempleazando los guiones bajos con espacios
+                $cadenaHTML .= "<th data-field='" . pg_field_name($resultado, $cont) . "'>" . str_replace("_", " ", pg_field_name($resultado, $cont)) . "</th>";
                 //VERIFICAR AQUI
             }
 
