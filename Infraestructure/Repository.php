@@ -189,7 +189,7 @@ class Repository extends Internationalization {
             $cadenaHTML .= "</thead>";
 
             $cadenaHTML .= "<tbody>";
-            
+
             for ($cont = 0; $cont < pg_numrows($resultado); $cont++) { //recorre registro por registro
                 //variable que contiene el tr con la funcion del selradio y el update data
                 //$funcion = "<tr class='rowTable' onclick=showData([";

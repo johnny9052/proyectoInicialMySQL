@@ -11,7 +11,7 @@
  *
  * @author Johnny
  */
-abstract class GeneralDTO {
+abstract class BaseDTO {
 
     private $IdUser;
     private $IdRol;

@@ -1,8 +1,8 @@
 <?php
 
-require_once ('../../DTO/GeneralDTO.php');
+require_once ('../../DTO/BaseDTO.php');
 
-class LogInDTO extends GeneralDTO{
+class LogInDTO extends BaseDTO{
 
     private $user;
     private $password;

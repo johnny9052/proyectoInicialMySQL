@@ -17,8 +17,7 @@ class loguinDAO {
      * @version 0.1
      */
     public function SignIn(LogInDTO $obj) {
-        $query = $this->repository->buildQuery("login", array((string) $obj->getUser(), (string) md5($obj->getPassword())));
-        //$query = "select login('" . $this->user . "','" . md5($this->password) . "', 'result'); FETCH ALL IN result";
+        $query = $this->repository->buildQuery("login", array((string) $obj->getUser(), (string) md5($obj->getPassword())));        
         $this->repository->ExecuteLogIn($query);
     }
 

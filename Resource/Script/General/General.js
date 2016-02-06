@@ -11,6 +11,8 @@ $(document).ready(function () {
         } // Callback for Modal close
     }
     );
+
+    $('select').material_select();
 });
 
 /* global Materialize */
@@ -69,14 +71,11 @@ function showLoadBar(status) {
  * @version 0.2
  */
 function Execute(dataSend, url, before, success) {
-
-
-
     $.ajax({
         type: 'post',
         url: "Controller/" + url + ".php",
         beforeSend: function () {
-            showLoadBar(true)
+            showLoadBar(true);
             if (before !== "") {
                 eval(before);
             }
@@ -101,7 +100,8 @@ function Execute(dataSend, url, before, success) {
                 case undefined:
                 default :
                     /*En el caso de que sea un listar info, buscar o pintar menu*/
-                    if (dataSend.action === "list" || dataSend.action === "menu" || dataSend.action === "search") {
+                    if (dataSend.action === "list" || dataSend.action === "menu" || dataSend.action === "search"
+                            || dataSend.action.indexOf("load") > -1) {
                         if (success !== "") {
                             eval(success);
                         }
@@ -112,6 +112,7 @@ function Execute(dataSend, url, before, success) {
         },
         error: function (jqXHR, textStatus, errorThrown) {
             showToast("Error detectado: " + textStatus + "\nExcepcion: " + errorThrown);
+            showToast("Verifique la ruta del archivo");
         }
     });
 }
@@ -119,6 +120,27 @@ function Execute(dataSend, url, before, success) {
 
 function buildPaginator(info) {
     $("#TblList").html(info[0].res);
+}
+
+
+function buildSelect(info, idSelect) {
+
+    //var combo = $("#" + idSelect);
+    var combo = document.getElementById(idSelect);
+
+    while (combo.length > 1) {
+        combo.remove(combo.length - 1);
+    }
+
+
+    for (var x in info) {
+        combo.options[combo.length] = new Option(info[x].nombre, info[x].id);
+    }
+
+    //$("#selRol").val(2);
+    $('#' + idSelect).material_select('destroy');
+    $('#' + idSelect).material_select();
+
 }
 
 
@@ -197,23 +219,29 @@ function defualtForm(form) {
  * defecto el valor type mandado por parametro 
  * @param {String} type : Accion que se ejecutara en el server
  * @param {String} form : Id del formulario donde se encuentran los inputs
+ * @param {Boolean} status : Determina si escanea los campos del formulario
  * @returns {Object} Objeto o array nombrado que se enviara por POST
  * @author Johnny Alexander Salazar
  * @version 0.3
  */
-function scanInfo(type, form) {
+function scanInfo(type, status, form) {
 
     var arrayParameters = new Array();
     form = defualtForm(form);
     arrayParameters.push(newArg("action", type));
-    var campos = '#' + form + ' :input:text,\n\
+
+    if (status) {
+        var campos = '#' + form + ' :input:text,\n\
                   #' + form + ' :input:password, \n\
                   #' + form + ' textarea';
 
-    $(campos).each(function () {
-        var elemento = this;
-        arrayParameters.push(newArg(elemento.name, elemento.value));
-    });
+        $(campos).each(function () {
+            var elemento = this;
+            arrayParameters.push(newArg(elemento.name, elemento.value));
+        });
+    }
+
+    //alert(arrayParameters);
     return arrayToObject(arrayParameters);
 }
 

@@ -11,14 +11,11 @@ and open the template in the editor.
 
         <!--        <link href="Resource/Style/Security/LogIn.css" rel="stylesheet">-->
 
-        <script defer type="text/javascript" src="Resource/Script/Configuration/Rol.js"></script>
+        <script defer type="text/javascript" src="Resource/Script/Configuration/User.js"></script>
     </head>
     <body>
 
-
         <br>       
-
-
 
         <div class="row">
             <div class="col s4 l4 m4 left">
@@ -49,9 +46,50 @@ and open the template in the editor.
                         <input id="txtId" name="id" class="identificator"  type="text" value="">                    
                     </div>
                     <div class="input-field col s12">
-                        <input id="txtName" name="name" type="text" value="" autocomplete="off" required
-                               placeholder="Nombre del rol">
-                        <!--                        <label class="messageInfo" for="name" data-error="Este campo es obligatorio" data-success=""></label>-->
+                        <input id="txtFirstName" name="firstName" type="text" value="" autocomplete="off" required
+                               placeholder="Primer nombre">                        
+                    </div>
+
+                    <div class="input-field col s12">
+                        <input id="txtSecondName" name="secondName" type="text" value="" autocomplete="off" 
+                               placeholder="Segundo nombre">                        
+                    </div>
+
+
+                    <div class="input-field col s12">
+                        <input id="txtFirstLastName" name="firstLastName" type="text" value="" autocomplete="off" required
+                               placeholder="Primer apellido">                        
+                    </div>
+
+                    <div class="input-field col s12">
+                        <input id="txtSecondLastName" name="secondLastName" type="text" value="" autocomplete="off" 
+                               placeholder="Segundo apellido">                        
+                    </div>
+
+
+                    <div class="input-field col s12">
+                        <input id="txtUser" name="user" type="text" value="" autocomplete="off" required
+                               placeholder="Nickname">                        
+                    </div>
+
+                    <div class="input-field col s12">
+                        <input id="txtPassword" name="password" type="password" value="" autocomplete="off" required
+                               placeholder="Password">                        
+                    </div>
+
+
+                    <div class="input-field col s12">
+                        <input id="txtPasswordConfirm" name="passwordConfirm" type="password" value="" autocomplete="off" required
+                               placeholder="Confirme su password">                        
+                    </div>
+
+                    <div class="input-field col s12">
+                        <select id="selRol" name="rol" required>
+                            <option value="" selected> -- SELECCIONE --</option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                        </select>
                     </div>
 
                     <div class="input-field col s12">

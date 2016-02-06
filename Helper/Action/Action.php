@@ -3,6 +3,10 @@
 function ExecuteAction($action, $obj, $dao) {
 
     switch ($action) {
+
+
+        /* Transaction CRUD */
+
         case "save":
             $dao->Save($obj);
             break;
@@ -22,6 +26,8 @@ function ExecuteAction($action, $obj, $dao) {
         case "list":
             $dao->ListAll($obj);
             break;
+
+        /* END Transaction CRUD */
 
         default :
             echo 'No action found';

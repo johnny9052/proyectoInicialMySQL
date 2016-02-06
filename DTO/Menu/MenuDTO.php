@@ -1,8 +1,8 @@
 <?php
 
-require_once ('DTO/GeneralDTO.php');
+require_once ('DTO/BaseDTO.php');
 
-class MenuDTO extends GeneralDTO {
+class MenuDTO extends BaseDTO {
 
     public function __Construct($IdRol) {
         parent::setIdRol($IdRol);        

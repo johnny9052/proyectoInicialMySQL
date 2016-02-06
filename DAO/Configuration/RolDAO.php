@@ -68,6 +68,7 @@ class RolDAO {
      */
     public function Delete(RolDTO $obj) {
         $query = $this->repository->buildQuerySimply("deleterol", array((int) $obj->getId()));
+        //echo $query;
         $this->repository->ExecuteTransaction($query);
     }
 

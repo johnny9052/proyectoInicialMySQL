@@ -1,11 +1,17 @@
 /* Funciones jQuery */
 $(window).load(function () {
     list();
+    loadRol();
 });
+
+
+function loadRol() {
+    Execute(scanInfo('loadRol', true), 'General/CtlGeneral', '', 'buildSelect(info,"selRol");');
+}
 
 function save() {
     if (validateForm() === true) {
-        Execute(scanInfo('save', true), 'Configuration/CtlRol', '', 'closeWindow();list();');
+        Execute(scanInfo('save'), 'Configuration/CtlRol', '', 'closeWindow();list();');
     }
 }
 
@@ -16,7 +22,7 @@ function list() {
 
 function search(id) {
     $("#txtId").val(id);
-    Execute(scanInfo('search', true), 'Configuration/CtlRol', '', 'showData(info);');
+    Execute(scanInfo('search'), 'Configuration/CtlRol', '', 'showData(info);');
 }
 
 
@@ -31,13 +37,13 @@ function showData(info) {
 
 function update() {
     if (validateForm() === true) {
-        Execute(scanInfo('update', true), 'Configuration/CtlRol', '', 'closeWindow();list();');
+        Execute(scanInfo('update'), 'Configuration/CtlRol', '', 'closeWindow();list();');
     }
 }
 
 
 function deleteInfo() {
     if (validateForm() === true) {
-        Execute(scanInfo('delete', true), 'Configuration/CtlRol', '', 'closeWindow();list();');
+        Execute(scanInfo('delete'), 'Configuration/CtlRol', '', 'closeWindow();list();');
     }
 }

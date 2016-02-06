@@ -43,7 +43,7 @@ and open the template in the editor.
         <link href="Resource/Framework/Materialize/css/icons.css" rel="stylesheet">
 
         <!-- GENERAL JS -->
-        <script type="text/javascript" src="Resource/Script/General/General.js"></script>
+        <script defer type="text/javascript" src="Resource/Script/General/General.js"></script>
     </head>
     <body>
         <?php

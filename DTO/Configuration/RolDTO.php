@@ -1,8 +1,8 @@
 <?php
 
-require_once ('../../DTO/GeneralDTO.php');
+require_once ('../../DTO/BaseDTO.php');
 
-class RolDTO extends GeneralDTO {
+class RolDTO extends BaseDTO {
 
     //put your code here
     private $id;
