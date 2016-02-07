@@ -3,13 +3,6 @@ $(window).load(function () {
     list();
 });
 
-
-function save() {
-    if (validateForm() === true) {
-        Execute(scanInfo('save', true), 'Configuration/CtlUser', '', 'closeWindow();list();');
-    }
-}
-
 function list() {
     Execute(scanInfo('list'), 'Configuration/CtlRol', '', 'buildPaginator(info);');
 }
@@ -17,7 +10,7 @@ function list() {
 
 function search(id) {
     $("#txtId").val(id);
-    Execute(scanInfo('search', true), 'Configuration/CtlUser', '', 'showData(info);');
+    Execute(scanInfo('load', false), 'Configuration/CtlPermission', '', 'BuildPermission(info);');
 }
 
 
@@ -36,15 +29,19 @@ function showData(info) {
 
 
 function update() {
+    var temp = new Array();
+    temp.push("permission");
+    $(":checked").each(function () {
+        var elemento = this;
+        temp.push(elemento.value);
+    });
+
+
     if (validateForm() === true) {
-        Execute(scanInfo('update', true), 'Configuration/CtlUser', '', 'closeWindow();list();');
+        Execute(scanInfo('update', true, '', [{datos: temp}]), 'Configuration/CtlPermission', '', 'closeWindow();list();');
     }
 }
 
-
-function deleteInfo() {
-    Execute(scanInfo('delete', true), 'Configuration/CtlUser', '', 'closeWindow();list();');
-}
 
 
 
@@ -56,27 +53,24 @@ function deleteInfo() {
  * @author Johnny Alexander Salazar
  * @version 0.1
  */
-function FixPermission(data) {
-    data = eval(data);
-    var padres = new Array();
+function BuildPermission(info) {
+    $("#FormContainerPermission").html(info.res);
+    Execute(scanInfo('loadPermission', true), 'Configuration/CtlPermission', '', 'CheckPermission(info);');
+}
 
-    /*Se sacan los codigos de los padres*/
-    for (var x in data) {
-        if (data[x].codpadre === "-1") {
-            padres.push({id: data[x].id, nombre: data[x].nombre, prioridad: data[x].prioridad, hijos: ""});
-        }
-    }
 
-    /*Por cada padre se sacan sus hijos*/
+
+function CheckPermission(padres) {
     for (var x in padres) {
-        var temp = new Array();
-        for (var y in data) {
-            if (padres[x].id === data[y].codpadre) {
-                temp.push([{id: data[y].id, nombre: data[y].nombre, prioridad: data[y].prioridad, codigo: data[y].codigo}]);
+        //SI TIENE HIJOS PINTA EL PADRE Y SUS HIJOS
+        if (padres[x].hijos.length > 0) {
+            for (var y in padres[x].hijos) {
+                //SE AÑADE CADA HIJO POR CADA PADRE
+                $("#" + padres[x].hijos[y].id).prop('checked', true);
             }
         }
-        padres[x].hijos = temp;
+
     }
 
-    return padres;
+    openWindow();
 }

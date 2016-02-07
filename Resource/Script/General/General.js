@@ -130,12 +130,13 @@ function Execute(dataSend, url, before, success) {
  * @author Johnny Alexander Salazar
  * @version 0.3
  */
-function scanInfo(type, status, form) {
+function scanInfo(type, status, form, dataPlus) {
 
     var arrayParameters = new Array();
     form = defualtForm(form);
     arrayParameters.push(newArg("action", type));
 
+    /*Inputs sencillos*/
     if (status) {
         var campos = '#' + form + ' :input:text,\n\
                   #' + form + ' :input:password, \n\
@@ -147,6 +148,25 @@ function scanInfo(type, status, form) {
             arrayParameters.push(newArg(elemento.name, elemento.value));
         });
     }
+
+
+
+    //SI EXISTE INFO ADICIONAL
+    if (dataPlus !== undefined) {
+        if (dataPlus.length > 0) {
+            for (var x in dataPlus) {
+                var valTemp = new Array();
+                for (var y in dataPlus[x].datos) {
+                    valTemp.push(dataPlus[x].datos[y]);
+                }
+                var nombreData = valTemp.shift();
+                arrayParameters.push(newArg(nombreData, valTemp.toString()));
+            }
+        }
+
+    }
+
+
 
     //alert(arrayParameters);
     return arrayToObject(arrayParameters);

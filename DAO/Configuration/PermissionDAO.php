@@ -11,44 +11,36 @@
  *
  * @author Johnny
  */
-class MenuDAO {
+class PermissionDAO {
 
     private $repository;
 
-    function MenuDAO() {
-        require_once 'Infraestructure/Repository.php';
+    function PermissionDAO() {
+        require_once '../../Infraestructure/Repository.php';
         $this->repository = new Repository();
     }
 
     /**
-     * Segun el perfil del usuario, retorna al cliente el codigo html con los 
-     * menus quedeberan ser mostrados al usuario   
+     * Ejecuta un actualizar en la base de datos
+     *
      * @return void      
      * @author Johnny Alexander Salazar
-     * @version 0.2
+     * @version 0.1
      */
-    public function LoadMenu(MenuDTO $obj) {
-        $query = $this->repository->buildQuery("loadMenu", array((int) $obj->getIdRol()));
-        $data = json_decode($this->repository->ExecuteReturn($query));
-
-        //SE ENCUENTRAN LOS PADRES
-        $padres = $this->FindFather($data);
-        //A los padres se le añaden los hijos
-        $padresHijos = $this->FindSon($padres, $data);
-        //Se construye el menu
-        $menu = $this->BuildMenu($padresHijos);
-        echo $menu;
+    public function Update(PermissionDTO $obj) {
+        $query = $this->repository->buildQuerySimply("updatepermission", array((int) $obj->getId(),
+            (string) "{".$obj->getPermission()."}"));
+        $this->repository->ExecuteTransaction($query);
     }
 
     /**
-     * Segun el perfil del usuario, retorna al cliente el codigo html con los 
-     * menus quedeberan ser mostrados al usuario   
+     * Retorna todos los menus con sus hijos
      * @return void      
      * @author Johnny Alexander Salazar
-     * @version 0.2
+     * @version 0.1
      */
     public function LoadAllMenu() {
-        $query = $this->repository->buildQuery("loadallmenu", array(''));
+        $query = $this->repository->buildQuery("loadallmenu", null);
         $data = json_decode($this->repository->ExecuteReturn($query));
 
         //SE ENCUENTRAN LOS PADRES
@@ -56,7 +48,26 @@ class MenuDAO {
         //A los padres se le añaden los hijos
         $padresHijos = $this->FindSon($padres, $data);
         //Se construye el menu        
-        echo $padresHijos;
+        $menu = $this->BuildPermission($padresHijos);
+        echo(json_encode(["res" => $menu]));
+    }
+
+    /**
+     * Retorna todos los menus con sus hijos
+     * @return void      
+     * @author Johnny Alexander Salazar
+     * @version 0.1
+     */
+    public function LoadPermission(PermissionDTO $obj) {
+        $query = $this->repository->buildQuery("loadmenu", array((int) $obj->getId()));
+        $data = json_decode($this->repository->ExecuteReturn($query));
+
+        //SE ENCUENTRAN LOS PADRES
+        $padres = $this->FindFather($data);
+        //A los padres se le añaden los hijos
+        $padresHijos = $this->FindSon($padres, $data);
+
+        echo json_encode($padresHijos);
     }
 
     /**
@@ -117,12 +128,9 @@ class MenuDAO {
      * @author Johnny Alexander Salazar
      * @version 0.1
      */
-    public function BuildMenu($padres) {
-        /* Logo de la empresa */
-        $menu = '<a id="logo-container"><img src="Resource/Multimedia/Images/Logo.png" class="Logo"></a>';
-        /* Menu inicio */
-        $menu.='<li><a href="index.php">Inicio</a></li>';
+    public function BuildPermission($padres) {
 
+        $menu = '';
 
         /* Se pinta el menu */
         foreach ($padres as $x) {
@@ -130,23 +138,23 @@ class MenuDAO {
             if (count($x->hijos) > 0) {
 
                 //INICIA EL PADRE
-                $menu.= '<li class="no-padding"><ul class="collapsible collapsible-accordion"><li>';
-                $menu.= '<a class="collapsible-header">' . $x->nombre . '<i class="mdi-navigation-arrow-drop-down"></i></a>';
-                $menu.= '<div class="collapsible-body"><ul>';
+
+                $menu.= '<p class="flow-text">' . $x->nombre . '</p>';
+
 
                 $hijos = json_decode(json_encode($x->hijos));
 
                 foreach ($hijos as $y) {
                     //SE AÑADE CADA HIJO POR CADA PADRE
-                    $menu.= '<li><a href="index.php?page=' . $y->codigo . '">' . $y->nombre . '</a></li>';
+                    $menu.= '<input type="checkbox" id="' . $y->id . '" value="' . $y->id . '"/> <label for="' . $y->id . '">'
+                            . $y->nombre . '</label>';
                     //SE CIERRA EL HIJO
                 }
 
-                $menu.= '</ul></div></li></ul></li>';
                 //SE CIERRA EL PADRE
             }
         }
-        $menu.='<li class="left"><a href="#" id="btnDesconectar" class="right" onclick="LogOut();">Cerrar sesion<i class="small mdi-action-account-circle"></i></a></li>';
+
         return $menu;
     }
 

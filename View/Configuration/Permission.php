@@ -40,58 +40,12 @@ and open the template in the editor.
                     <div class="input-field col s12">
                         <input id="txtId" name="id" class="identificator"  type="text" value="">                    
                     </div>
-                    <div class="input-field col s12">
-                        <input id="txtFirstName" name="firstName" type="text" value="" autocomplete="off" required
-                               placeholder="Primer nombre">                        
+                    
+                    <div id="FormContainerPermission">
+                        
                     </div>
 
-                    <div class="input-field col s12">
-                        <input id="txtSecondName" name="secondName" type="text" value="" autocomplete="off" 
-                               placeholder="Segundo nombre">                        
-                    </div>
-
-
-                    <div class="input-field col s12">
-                        <input id="txtFirstLastName" name="firstLastName" type="text" value="" autocomplete="off" required
-                               placeholder="Primer apellido">                        
-                    </div>
-
-                    <div class="input-field col s12">
-                        <input id="txtSecondLastName" name="secondLastName" type="text" value="" autocomplete="off" 
-                               placeholder="Segundo apellido">                        
-                    </div>
-
-
-                    <div class="input-field col s12">
-                        <input id="txtUser" name="user" type="text" value="" autocomplete="off" required
-                               placeholder="Nickname">                        
-                    </div>
-
-                    <div class="input-field col s12">
-                        <input id="txtPassword" name="password" type="password" value="" autocomplete="off" required
-                               placeholder="Password">                        
-                    </div>
-
-
-                    <div class="input-field col s12">
-                        <input id="txtPasswordConfirm" name="passwordConfirm" type="password" value="" autocomplete="off" required
-                               placeholder="Confirme su password">                        
-                    </div>
-
-                    <div class="input-field col s12">
-                        <select id="selRol" name="rol" required>
-                            <option value="-1" selected> -- SELECCIONE --</option>                            
-                        </select>
-                    </div>
-
-                    <div class="input-field col s12">
-                        <textarea id="txtDescription" name="description" class="materialize-textarea" value="" autocomplete="off" 
-                                  placeholder="Descripcion"></textarea>
-                        <!--<label class="messageInfo" for="description" data-error="" data-success="">-->                                
-                        </label>
-                    </div>
-
-                </div>   
+                </div>                   
             </div>
 
             <div  class="buttonContainer modal-footer center-row">
@@ -103,24 +57,12 @@ and open the template in the editor.
                 <br>
 
                 <div class="row newActionButton">
-                    <a class=" buttonAction l4 btn-floating" id="btnSave" 
-                       onclick="save();"><i class="material-icons">save</i></a>                                
-
-                    <a class="buttonAction l4 btn-floating" 
-                       onclick="closeWindow();"><i class="material-icons">cancel</i></a>                                
-                </div>
-
-                <div class="row updateActionButton">
-                    <a class="buttonAction l4 btn-floating" id="btnSave" 
+                    <a class=" buttonAction l4 btn-floating" id="btnUpdate" 
                        onclick="update();"><i class="material-icons">edit</i></a>                                
 
-                    <a class="buttonAction l4 btn-floating" id="btnSave" 
-                       onclick="goNavigation('ModalNew', 'ModalConfirm');"><i class="material-icons">delete</i></a>    
-
                     <a class="buttonAction l4 btn-floating" 
                        onclick="closeWindow();"><i class="material-icons">cancel</i></a>                                
-                </div>             
-
+                </div>                    
             </div>
         </div>
 
