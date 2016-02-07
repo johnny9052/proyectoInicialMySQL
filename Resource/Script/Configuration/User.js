@@ -42,13 +42,11 @@ function showData(info) {
 
 function update() {
     if (validateForm() === true) {
-        Execute(scanInfo('update', true), 'Configuration/CtlRol', '', 'closeWindow();list();');
+        Execute(scanInfo('update', true), 'Configuration/CtlUser', '', 'closeWindow();list();');
     }
 }
 
 
 function deleteInfo() {
-    if (validateForm() === true) {
-        Execute(scanInfo('delete', true), 'Configuration/CtlRol', '', 'closeWindow();list();');
-    }
+    Execute(scanInfo('delete', true), 'Configuration/CtlUser', '', 'closeWindow();list();');
 }

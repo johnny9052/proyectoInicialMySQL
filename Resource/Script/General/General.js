@@ -185,10 +185,6 @@ function refreshSelect(id, val) {
 }
 
 
-
-
-
-
 /**
  * Valida todos los inputs required de un formulario (si recibe el parametro
  * tomara el id, si no evaluara el form "fMain"), para determinar si son 

@@ -11,21 +11,5 @@ $(document).ready(function () {
     }
     );
 
-    //loadMenu();
-
 });
-
-
-/**
- * Trae los menus a los cuales tiene acceso un usuario
- * @returns {void}
- * @author Johnny Alexander Salazar
- * @version 0.1
- */
-function loadMenu() {    
-    Execute(scanInfo("menu"), "General/CtlMenu", "", "BuildMenu(data);");
-}
-
-
-
 

@@ -57,8 +57,11 @@ class UserDAO {
      * @version 0.1
      */
     public function Update(UserDTO $obj) {
-        $query = $this->repository->buildQuerySimply("updaterol", array((int) $obj->getId(),
-            (string) $obj->getName(), (string) $obj->getDescription()));
+        $query = $this->repository->buildQuerySimply("updateuser", array((int) $obj->getId(),
+            (string) $obj->getFirstName(), (string) $obj->getSecondName(),
+            (string) $obj->getFirstLastName(), (string) $obj->getSecondLastName(),
+            (string) $obj->getUser(), (string) md5($obj->getPassword()),
+            (int) $obj->getRol(), (string) $obj->getDescription()));
         $this->repository->ExecuteTransaction($query);
     }
 
@@ -70,7 +73,7 @@ class UserDAO {
      * @version 0.1
      */
     public function Delete(UserDTO $obj) {
-        $query = $this->repository->buildQuerySimply("deleterol", array((int) $obj->getId()));
+        $query = $this->repository->buildQuerySimply("deleteuser", array((int) $obj->getId()));
         //echo $query;
         $this->repository->ExecuteTransaction($query);
     }

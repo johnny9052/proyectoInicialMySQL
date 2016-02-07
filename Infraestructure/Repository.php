@@ -168,9 +168,12 @@ class Repository extends Internationalization {
      * @return string Echo de resultado de la consulta en formato JSON, con variable res y conteniendo la talba
      * @param string $query Consulta a ejecutar     
      * @author Johnny Alexander Salazar
-     * @version 0.2
+     * @version 0.5
      */
     public function BuildPaginator($query) {
+
+        //Longitud maxima de los caracteres del listado
+        $max = 25;
 
         $resultado = pg_query($this->objCon->getConnect(), $query) or die("Problemas en la consulta: " . pg_last_error());
 
@@ -205,7 +208,8 @@ class Repository extends Internationalization {
                         $funcion.='\'' . pg_result($resultado, $cont, $posreg) . "'"; //lo añade a la funcion updatedata    
                     }
                     if ($posreg > 0) {//omite el id para no mostrarlo en los campos de la tabla
-                        $campos.="<td>" . pg_result($resultado, $cont, $posreg) . "</td>";
+                        $campos.="<td>" . substr(pg_result($resultado, $cont, $posreg), 0, $max) .
+                                ((strlen(pg_result($resultado, $cont, $posreg)) > $max) ? ".." : "") . "</td>";
                     }
                     //VERIFICAR AQUI
 //                    if ($posreg < pg_num_fields($resultado) - 1) { //si quedan mas parametros por recorrer pone una ,
