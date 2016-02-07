@@ -9,7 +9,7 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <title></title>
 
-        <!--        <link href="Resource/Style/Security/LogIn.css" rel="stylesheet">-->
+        <link href="Resource/Style/Configuration/Permission.css" rel="stylesheet">
 
         <script defer type="text/javascript" src="Resource/Script/Configuration/Permission.js"></script>
     </head>
@@ -41,7 +41,7 @@ and open the template in the editor.
                         <input id="txtId" name="id" class="identificator"  type="text" value="">                    
                     </div>
                     
-                    <div id="FormContainerPermission">
+                    <div id="FormContainerPermission" class="containerPermission">
                         
                     </div>
 

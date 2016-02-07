@@ -96,6 +96,30 @@ class Repository extends Internationalization {
     }
 
     /**
+     * Ejecuta una consulta sql y retorna su resultado, si encuentra algo inicia una sesion
+     *
+     * @return string Echo de resultado de la consulta en formato JSON
+     * @param string $query Consulta a ejecutar     
+     * @author Johnny Alexander Salazar
+     * @version 0.1
+     */
+    public function ExecuteLoadPage($query) {
+
+        $resultado = pg_query($this->objCon->getConnect(), $query) or die("Problemas en la consulta: " . pg_last_error());
+
+        while ($reg = pg_fetch_array($resultado, null, PGSQL_ASSOC)) {
+            $vec[] = $reg;
+        }
+
+        if (isset($vec)) {            
+            $_SESSION["Page"] = pg_result($resultado, 0, 0);
+            header('location: ../../index.php');
+        } else {
+            header('location: ../../index.php');
+        }
+    }
+
+    /**
      * Ejecuta una consulta sql enfocada a seleccionar datos y retorna al 
      * cliente su resultado
      *
@@ -114,7 +138,9 @@ class Repository extends Internationalization {
         if (isset($vec)) {
             echo(json_encode($vec));
         } else {
-            echo '{"res" : "Error"}';
+            echo ' {
+                "res" : "Error"
+            }';
         }
     }
 
@@ -158,7 +184,9 @@ class Repository extends Internationalization {
         if (isset($vec)) {
             return(json_encode($vec));
         } else {
-            echo '{"res" : ' . $this->getOperationError() . '}';
+            echo ' {
+                "res" : ' . $this->getOperationError() . '
+            }';
         }
     }
 

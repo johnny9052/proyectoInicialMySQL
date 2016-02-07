@@ -147,7 +147,7 @@ class PermissionDAO {
                 foreach ($hijos as $y) {
                     //SE AÑADE CADA HIJO POR CADA PADRE
                     $menu.= '<input type="checkbox" id="' . $y->id . '" value="' . $y->id . '"/> <label for="' . $y->id . '">'
-                            . $y->nombre . '</label>';
+                            . $y->nombre . '</label> <br>';
                     //SE CIERRA EL HIJO
                 }
 

@@ -13,8 +13,8 @@
  */
 abstract class BaseDTO {
 
-    private $IdUser;
-    private $IdRol;
+    protected $IdUser;
+    protected $IdRol;
 
     function getIdUser() {
         return $this->IdUser;

@@ -138,7 +138,7 @@ class MenuDAO {
 
                 foreach ($hijos as $y) {
                     //SE AÑADE CADA HIJO POR CADA PADRE
-                    $menu.= '<li><a href="index.php?page=' . $y->codigo . '">' . $y->nombre . '</a></li>';
+                    $menu.= '<li><a href="Helper/Content/Content.php?page=' . $y->codigo . '">' . $y->nombre . '</a></li>';
                     //SE CIERRA EL HIJO
                 }
 

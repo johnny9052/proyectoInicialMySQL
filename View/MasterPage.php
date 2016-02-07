@@ -27,8 +27,8 @@ and open the template in the editor.
             <div class="row">
                 <div class="col s12">
                     <?php
-                    if (isset($_GET['page'])) {
-                        include($_GET['page'] . ".php");
+                    if (isset($_SESSION['Page'])) {
+                        include($_SESSION['Page'] . ".php");
                     } else {
                         include("View/Home/Home.php");
                     }

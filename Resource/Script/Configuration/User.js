@@ -10,8 +10,16 @@ function loadRol() {
 }
 
 function save() {
-    if (validateForm() === true) {
-        Execute(scanInfo('save', true), 'Configuration/CtlUser', '', 'closeWindow();list();');
+
+    var password = $("#txtPassword").val();
+    var confirm = $("#txtPasswordConfirm").val();
+
+    if (password === confirm) {
+        if (validateForm() === true) {
+            Execute(scanInfo('save', true), 'Configuration/CtlUser', '', 'closeWindow();list();');
+        }
+    } else {
+        showToast("El password no coincide");
     }
 }
 
@@ -41,8 +49,15 @@ function showData(info) {
 
 
 function update() {
-    if (validateForm() === true) {
-        Execute(scanInfo('update', true), 'Configuration/CtlUser', '', 'closeWindow();list();');
+    var password = $("#txtPassword").val();
+    var confirm = $("#txtPasswordConfirm").val();
+
+    if (password === confirm) {
+        if (validateForm() === true) {
+            Execute(scanInfo('update', true), 'Configuration/CtlUser', '', 'closeWindow();list();');
+        }
+    } else {
+        showToast("El password no coincide");
     }
 }
 
