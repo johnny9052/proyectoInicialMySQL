@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Description of Repository
- *
- * @author Johnny
+ * Repositorio con funciones genericas
+ * @author Johnny Alexander Salazar
+ * @version 0.1
  */
 require_once 'Internationalization.php';
 
@@ -18,9 +18,9 @@ class Repository extends Internationalization {
         $this->con = $this->objCon->connect();
     }
 
+    
     /**
      * Construye una consulta sql y retorna el resultado en un cursor
-     *
      * @return string consulta armada
      * @param string $nameFunction Nombre de la funcion que se quiere ejecutar
      * @param array $array Vector que contiene los parametros que llevara la consulta
@@ -46,6 +46,7 @@ class Repository extends Internationalization {
         return $query;
     }
 
+    
     /**
      * Construye una consulta sql y retorna un dato con el nombre de res
      *
@@ -95,9 +96,9 @@ class Repository extends Internationalization {
         }
     }
 
+    
     /**
-     * Ejecuta una consulta sql y retorna su resultado, si encuentra algo inicia una sesion
-     *
+     * Valida si se tiene permisos para acceder a la pagina solicitada
      * @return string Echo de resultado de la consulta en formato JSON
      * @param string $query Consulta a ejecutar     
      * @author Johnny Alexander Salazar
@@ -122,7 +123,6 @@ class Repository extends Internationalization {
     /**
      * Ejecuta una consulta sql enfocada a seleccionar datos y retorna al 
      * cliente su resultado
-     *
      * @return string Echo de resultado de la consulta en formato JSON
      * @param string $query Consulta a ejecutar     
      * @author Johnny Alexander Salazar
@@ -167,7 +167,7 @@ class Repository extends Internationalization {
     }
 
     /**
-     * Ejecuta una consulta sql y retorna al su ejecutador el resultado
+     * Ejecuta una consulta sql y retorna al su ejecutador resultado
      *
      * @return string Echo de resultado de la consulta en formato JSON
      * @param string $query Consulta a ejecutar     
@@ -192,7 +192,6 @@ class Repository extends Internationalization {
 
     /**
      * Ejecuta una consulta sql y retorna una tabla HTML con el resultado de la consulta
-     *
      * @return string Echo de resultado de la consulta en formato JSON, con variable res y conteniendo la talba
      * @param string $query Consulta a ejecutar     
      * @author Johnny Alexander Salazar

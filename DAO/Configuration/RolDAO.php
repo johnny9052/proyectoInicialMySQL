@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Definicion de acciones para la gestion de los roles
+ * @author Johnny Alexander Salazar
+ * @version 0.1
+ */
 class RolDAO {
 
     private $repository;
@@ -11,7 +16,7 @@ class RolDAO {
 
     /**
      * Ejecuta un guardar en la base de datos
-     *
+     * @param RolDTO $obj 
      * @return void      
      * @author Johnny Alexander Salazar
      * @version 0.1
@@ -24,7 +29,7 @@ class RolDAO {
 
     /**
      * Ejecuta un listar en la base de datos
-     *
+     * @param RolDTO $obj 
      * @return void      
      * @author Johnny Alexander Salazar
      * @version 0.1
@@ -36,7 +41,7 @@ class RolDAO {
 
     /**
      * Ejecuta un buscar en la base de datos
-     *
+     * @param RolDTO $obj 
      * @return void      
      * @author Johnny Alexander Salazar
      * @version 0.1
@@ -48,7 +53,7 @@ class RolDAO {
 
     /**
      * Ejecuta un actualizar en la base de datos
-     *
+     * @param RolDTO $obj 
      * @return void      
      * @author Johnny Alexander Salazar
      * @version 0.1
@@ -61,14 +66,13 @@ class RolDAO {
 
     /**
      * Ejecuta un borrar en la base de datos
-     *
+     * @param RolDTO $obj 
      * @return void      
      * @author Johnny Alexander Salazar
      * @version 0.1
      */
     public function Delete(RolDTO $obj) {
         $query = $this->repository->buildQuerySimply("deleterol", array((int) $obj->getId()));
-        //echo $query;
         $this->repository->ExecuteTransaction($query);
     }
 

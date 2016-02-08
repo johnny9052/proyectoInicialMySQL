@@ -1,15 +1,9 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- * Description of MenuDAO
- *
- * @author Johnny
+ * Definicion de acciones de carga del menu del sistema
+ * @author Johnny Alexander Salazar
+ * @version 0.1
  */
 class MenuDAO {
 
@@ -23,6 +17,7 @@ class MenuDAO {
     /**
      * Segun el perfil del usuario, retorna al cliente el codigo html con los 
      * menus quedeberan ser mostrados al usuario   
+     * @param MenuDTO $obj
      * @return void      
      * @author Johnny Alexander Salazar
      * @version 0.2
@@ -30,7 +25,6 @@ class MenuDAO {
     public function LoadMenu(MenuDTO $obj) {
         $query = $this->repository->buildQuery("loadMenu", array((int) $obj->getIdRol()));
         $data = json_decode($this->repository->ExecuteReturn($query));
-
         //SE ENCUENTRAN LOS PADRES
         $padres = $this->FindFather($data);
         //A los padres se le añaden los hijos
@@ -41,8 +35,7 @@ class MenuDAO {
     }
 
     /**
-     * Segun el perfil del usuario, retorna al cliente el codigo html con los 
-     * menus quedeberan ser mostrados al usuario   
+     * Retorna todos los menus de la base de datos
      * @return void      
      * @author Johnny Alexander Salazar
      * @version 0.2
@@ -59,6 +52,7 @@ class MenuDAO {
         echo $padresHijos;
     }
 
+    
     /**
      * Determina cuales son los menus padres que futuramente contendran hijos     
      * @return Array Lista unicamente con los padres, y con un espacion para

@@ -3,8 +3,7 @@
 require_once ('../../DTO/BaseDTO.php');
 
 class UserDTO extends BaseDTO {
-
-    //put your code here
+    
     private $id;
     private $firstName;
     private $secondName;

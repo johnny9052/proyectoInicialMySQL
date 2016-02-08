@@ -15,7 +15,6 @@ $(document).ready(function () {
     $('select').material_select();
 });
 
-/* global Materialize */
 
 /**
  * Muestra un mensaje en un toast 
@@ -125,6 +124,9 @@ function Execute(dataSend, url, before, success) {
  * defecto el valor type mandado por parametro 
  * @param {String} type : Accion que se ejecutara en el server
  * @param {String} form : Id del formulario donde se encuentran los inputs
+ * @param {Array} dataPlus : Array con datos adicionales, la primera posicion
+ * de cada objeto en cada posicion del array, es el nombre que se le asignara
+ * a dichos datos
  * @param {Boolean} status : Determina si escanea los campos del formulario
  * @returns {Object} Objeto o array nombrado que se enviara por POST
  * @author Johnny Alexander Salazar
@@ -149,8 +151,6 @@ function scanInfo(type, status, form, dataPlus) {
         });
     }
 
-
-
     //SI EXISTE INFO ADICIONAL
     if (dataPlus !== undefined) {
         if (dataPlus.length > 0) {
@@ -166,38 +166,52 @@ function scanInfo(type, status, form, dataPlus) {
 
     }
 
-
-
-    //alert(arrayParameters);
     return arrayToObject(arrayParameters);
 }
 
 
 
-
+/**
+ * Ingresa un codigo html al listado general
+ * @param {String-html} info : html con la tabla
+ * @author Johnny Alexander Salazar
+ * @version 0.3
+ */
 function buildPaginator(info) {
     $("#TblList").html(info[0].res);
 }
 
 
+/**
+ * Carga un combo especificado, con los datos que se envian por parametro
+ * @param {json} info : Datos que seran agragados
+ * @param {int} idSelect : Id del select
+ * @author Johnny Alexander Salazar
+ * @version 0.3
+ */
 function buildSelect(info, idSelect) {
 
-    //var combo = $("#" + idSelect);
     var combo = document.getElementById(idSelect);
 
     while (combo.length > 1) {
         combo.remove(combo.length - 1);
     }
 
-
     for (var x in info) {
         combo.options[combo.length] = new Option(info[x].nombre, info[x].id);
     }
 
     refreshSelect(idSelect, -1);
-
 }
 
+
+/**
+ * Refresca un select
+ * @param {int} id : id del select a refrescar
+ * @param {string} val : valor por defecto que sera seleccionado
+ * @author Johnny Alexander Salazar
+ * @version 0.1
+ */
 function refreshSelect(id, val) {
     $("#" + id).val(val);
     $('#' + id).material_select('destroy');
@@ -268,8 +282,6 @@ function defualtForm(form) {
 }
 
 
-
-
 /**
  * Convierte un array de datos a un objeto, y debe tener separado el nombre de
  * la futura variable y su valor por = 
@@ -331,7 +343,6 @@ function BuildMenu(data) {
     for (var x in data) {
         if (data[x].codpadre === "-1") {
             padres.push({id: data[x].id, nombre: data[x].nombre, prioridad: data[x].prioridad, hijos: ""});
-            //data.splice(x, 1);//Se elimina el padre encontrado
         }
     }
 
@@ -339,7 +350,6 @@ function BuildMenu(data) {
     for (var x in padres) {
         var temp = new Array();
         for (var y in data) {
-//alert(padres[x].id +"-"+ data[y].codpadre);
             if (padres[x].id === data[y].codpadre) {
                 temp.push([{id: data[y].id, nombre: data[y].nombre, prioridad: data[y].prioridad, codigo: data[y].codigo}]);
             }
@@ -347,65 +357,31 @@ function BuildMenu(data) {
         padres[x].hijos = temp;
     }
 
-//LOGO EMPRESA
-// var menu = '<a id="logo-container"><img src="Resource/Multimedia/Images/Logo.png" class="Logo"></a>';
-//INICIO
-//menu += '<li><a href="index.php">Inicio</a></li>';
-
     var menu = "";
     /*Se pinta el menu*/
     for (var x in padres) {
 
-//SI TIENE HIJOS PINTA EL PADRE Y SUS HIJOS
+        //SI TIENE HIJOS PINTA EL PADRE Y SUS HIJOS
         if (padres[x].hijos.length > 0) {
-//INICIA EL PADRE
+            //INICIA EL PADRE
             menu += '<li class="no-padding"><ul class="collapsible collapsible-accordion"><li>';
             menu += '<a class="collapsible-header">' + padres[x].nombre + '<i class="mdi-navigation-arrow-drop-down"></i></a>';
             menu += '<div class="collapsible-body"><ul>';
             for (var y in padres[x].hijos) {
-
-//SE AÑADE CADA HIJO POR CADA PADRE
+                //SE AÑADE CADA HIJO POR CADA PADRE
                 menu += '<li><a href="index.php?page=estudiantes">' + padres[x].hijos[y].nombre + '</a></li>';
                 //SE CIERRA EL HIJO
             }
-
             menu += '</ul></div></li></ul></li>';
             //SE CIERRA EL PADRE
         }
-
     }
 
-//CERRAR SESION
+    //CERRAR SESION
     menu += '<li class="left"><a href="#" id="btnDesconectar" class="right" onclick="LogOut();">Cerrar sesion<i class="small mdi-action-account-circle"></i></a></li>';
     $("#slide-out").html(menu);
 }
 
-
-
-
-//
-//
-//function showEraseWindow(idDiv) {
-//
-//    if (listdata.length > 0) {
-//        if (!idDiv) {
-//            idDiv = "divErase";
-//        }
-//
-//        var listtemp = listdata.slice();
-//        iddata = listtemp.shift();
-//
-//        $.fancybox({
-//            href: '#' + idDiv
-//
-//        });
-//    } else {
-//        showMessage(messageSelected);
-//    }
-//}
-//
-//
-//
 
 /**
  * Cierra el modal que se especique
@@ -447,11 +423,24 @@ function openWindow(idModal) {
     $('#' + idModal).openModal();
 }
 
-
+/**
+ * Retorna el id del modal por defecto si no se le especifica uno 
+ * @param {int} idModal : Id del modal
+ * @author Johnny Alexander Salazar
+ * @version 0.1
+ */
 function DefaultModal(idModal) {
     return (idModal === undefined || idModal === "") ? 'ModalNew' : idModal;
 }
 
+
+/**
+ * Oculta o muestra las acciones de un formulario segun se necesiten
+ * @param {boolean} status : Indica si se muestra las acciones de guardar o de 
+ * editar y eliminar
+ * @author Johnny Alexander Salazar
+ * @version 0.1
+ */
 function showButton(status) {
     if (status) {
         $(".newActionButton").show();

@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Definicion de acciones para la gestion de la seguridad al cargar un 
+ * determinado menu solicitado por el usuario
+ *
+ * @author Johnny Alexander Salazar
+ * @version 0.1
+ */
 class ContentDAO {
 
     private $repository;
@@ -10,8 +17,9 @@ class ContentDAO {
     }
 
     /**
-     * Ejecuta una consulta login con los parametros usuario y contraseña
-     *
+     * Determina si un usuario que solicita una determinada pagina tiene
+     * realmente los permisos necesarios para esto.
+     * @param ContentDTO $obj 
      * @return void      
      * @author Johnny Alexander Salazar
      * @version 0.1

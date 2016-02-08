@@ -1,15 +1,9 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- * Description of Internationalization
- *
- * @author Johnny
+ * Variables de internacionalizacion del sistema
+ * @author Johnny Alexander Salazar
+ * @version 0.1
  */
 class Internationalization {
 

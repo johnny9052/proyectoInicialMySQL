@@ -3,8 +3,7 @@
 require_once ('../../DTO/BaseDTO.php');
 
 class ContentDTO extends BaseDTO {
-
-    //put your code here
+    
     private $page;
 
     public function __Construct($page, $rol) {

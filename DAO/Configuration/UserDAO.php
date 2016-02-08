@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Definicion de acciones para la gestion de los usuarios
+ *
+ * @author Johnny Alexander Salazar
+ * @version 0.1
+ */
 class UserDAO {
 
     private $repository;
@@ -11,7 +17,7 @@ class UserDAO {
 
     /**
      * Ejecuta un guardar en la base de datos
-     *
+     * @param UserDTO $obj 
      * @return void      
      * @author Johnny Alexander Salazar
      * @version 0.1
@@ -27,7 +33,7 @@ class UserDAO {
 
     /**
      * Ejecuta un listar en la base de datos
-     *
+     * @param UserDTO $obj 
      * @return void      
      * @author Johnny Alexander Salazar
      * @version 0.1
@@ -39,7 +45,7 @@ class UserDAO {
 
     /**
      * Ejecuta un buscar en la base de datos
-     *
+     * @param UserDTO $obj 
      * @return void      
      * @author Johnny Alexander Salazar
      * @version 0.1
@@ -51,7 +57,7 @@ class UserDAO {
 
     /**
      * Ejecuta un actualizar en la base de datos
-     *
+     * @param UserDTO $obj 
      * @return void      
      * @author Johnny Alexander Salazar
      * @version 0.1
@@ -67,14 +73,13 @@ class UserDAO {
 
     /**
      * Ejecuta un borrar en la base de datos
-     *
+     * @param UserDTO $obj 
      * @return void      
      * @author Johnny Alexander Salazar
      * @version 0.1
      */
     public function Delete(UserDTO $obj) {
         $query = $this->repository->buildQuerySimply("deleteuser", array((int) $obj->getId()));
-        //echo $query;
         $this->repository->ExecuteTransaction($query);
     }
 

@@ -3,8 +3,7 @@
 require_once ('../../DTO/BaseDTO.php');
 
 class PermissionDTO extends BaseDTO {
-
-    //put your code here
+    
     private $id;
     private $permission;
 

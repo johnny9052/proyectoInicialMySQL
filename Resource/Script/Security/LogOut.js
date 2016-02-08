@@ -1,4 +1,4 @@
-/* Identificar a un usuario del sistema */
+/* Desconectarce del sistema */
 function LogOut() {
     Execute("", 'Security/CtlLogOut', '', 'location.reload();');
 }

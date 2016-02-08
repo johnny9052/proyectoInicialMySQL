@@ -3,8 +3,7 @@
 require_once ('../../DTO/BaseDTO.php');
 
 class RolDTO extends BaseDTO {
-
-    //put your code here
+    
     private $id;
     private $name;
     private $description;

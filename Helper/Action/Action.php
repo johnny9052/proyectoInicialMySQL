@@ -1,9 +1,13 @@
 <?php
 
+/**
+ * Contiene el control de las acciones basicas del sistema
+ * @author Johnny Alexander Salazar
+ * @version 0.1
+ */
 function ExecuteAction($action, $obj, $dao) {
 
     switch ($action) {
-
 
         /* Transaction CRUD */
 

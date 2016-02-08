@@ -1,6 +1,5 @@
 $(document).ready(function () {
-
-    //Menu de navegacion
+    //Inicializa el menu de opciones
     $('.dropdown-button').dropdown();
     $('.button-collapse').sideNav();
 
@@ -10,6 +9,5 @@ $(document).ready(function () {
         closeOnClick: false // Closes side-nav on <a> clicks, useful for Angular/Meteor
     }
     );
-
 });
 

@@ -3,10 +3,10 @@ $(window).load(function () {
     list();
 });
 
+
 function list() {
     Execute(scanInfo('list'), 'Configuration/CtlRol', '', 'buildPaginator(info);');
 }
-
 
 function search(id) {
     $("#txtId").val(id);
@@ -59,7 +59,13 @@ function BuildPermission(info) {
 }
 
 
-
+/**
+ * Cada permiso que se encuentra lo marca en la interfaz
+ * @param {Array} padres Lista con los padres y los hijos
+ * @returns {void} 
+ * @author Johnny Alexander Salazar
+ * @version 0.1
+ */
 function CheckPermission(padres) {
     for (var x in padres) {
         //SI TIENE HIJOS PINTA EL PADRE Y SUS HIJOS
@@ -71,6 +77,5 @@ function CheckPermission(padres) {
         }
 
     }
-
     openWindow();
 }

@@ -1,15 +1,10 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- * Description of MenuDAO
+ * Definicion de acciones para la gestion de permisos de los usuarios
  *
- * @author Johnny
+ * @author Johnny Alexander Salazar
+ * @version 0.1
  */
 class PermissionDAO {
 
@@ -22,14 +17,14 @@ class PermissionDAO {
 
     /**
      * Ejecuta un actualizar en la base de datos
-     *
+     * @param PermissionDTO $obj 
      * @return void      
      * @author Johnny Alexander Salazar
      * @version 0.1
      */
     public function Update(PermissionDTO $obj) {
         $query = $this->repository->buildQuerySimply("updatepermission", array((int) $obj->getId(),
-            (string) "{".$obj->getPermission()."}"));
+            (string) "{" . $obj->getPermission() . "}"));
         $this->repository->ExecuteTransaction($query);
     }
 
@@ -42,7 +37,6 @@ class PermissionDAO {
     public function LoadAllMenu() {
         $query = $this->repository->buildQuery("loadallmenu", null);
         $data = json_decode($this->repository->ExecuteReturn($query));
-
         //SE ENCUENTRAN LOS PADRES
         $padres = $this->FindFather($data);
         //A los padres se le añaden los hijos
@@ -53,7 +47,8 @@ class PermissionDAO {
     }
 
     /**
-     * Retorna todos los menus con sus hijos
+     * Retorna todos los menus con sus hijos de un respectivo rol
+     * @param PermissionDTO $obj 
      * @return void      
      * @author Johnny Alexander Salazar
      * @version 0.1
@@ -72,9 +67,9 @@ class PermissionDAO {
 
     /**
      * Determina cuales son los menus padres que futuramente contendran hijos     
+     * @param Array $data Array JSON
      * @return Array Lista unicamente con los padres, y con un espacion para
-     * almacenar los hijos
-     * @param array $data lista con todos los padres - hijos     
+     * almacenar los hijos     
      * @author Johnny Alexander Salazar
      * @version 0.1
      */
@@ -129,32 +124,23 @@ class PermissionDAO {
      * @version 0.1
      */
     public function BuildPermission($padres) {
-
         $menu = '';
-
         /* Se pinta el menu */
         foreach ($padres as $x) {
             //SI TIENE HIJOS PINTA EL PADRE Y SUS HIJOS
             if (count($x->hijos) > 0) {
-
                 //INICIA EL PADRE
-
                 $menu.= '<p class="flow-text">' . $x->nombre . '</p>';
-
-
                 $hijos = json_decode(json_encode($x->hijos));
-
                 foreach ($hijos as $y) {
                     //SE AÑADE CADA HIJO POR CADA PADRE
                     $menu.= '<input type="checkbox" id="' . $y->id . '" value="' . $y->id . '"/> <label for="' . $y->id . '">'
                             . $y->nombre . '</label> <br>';
                     //SE CIERRA EL HIJO
                 }
-
                 //SE CIERRA EL PADRE
             }
         }
-
         return $menu;
     }
 

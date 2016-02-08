@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Definicion de acciones para la gestion de desconexion del sistema
+ * @author Johnny Alexander Salazar
+ * @version 0.1
+ */
 class logOutDAO {
 
     private $con;
@@ -12,8 +17,7 @@ class logOutDAO {
     }
 
     /**
-     * Destruye la sesion que se encuentra activa
-     *
+     * Destruye la sesion que se encuentra activa     
      * @return string response:0 en formato JSON
      * @author Johnny Alexander Salazar
      * @version 0.1
