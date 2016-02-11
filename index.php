@@ -25,6 +25,12 @@ and open the template in the editor.
         <link href="Resource/Style/General.css" rel="stylesheet">
 
 
+        <!-- ICONOS ONLINE-->
+        <!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
+        <!-- ICONOS OFFLINE-->
+        <link href="Resource/Framework/Materialize/css/icons.css" rel="stylesheet">
+
+
         <!--Import jQuery before materialize.js ONLINE-->
         <!--<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>-->
         <!--Import jQuery before materialize.js OFFLINE-->
@@ -36,11 +42,6 @@ and open the template in the editor.
         <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>-->
         <!--Import materialize.js OFFLINE-->
         <script type="text/javascript" src="Resource/Framework/Materialize/js/materialize.min.js"></script>
-
-        <!-- ICONOS ONLINE-->
-        <!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
-        <!-- ICONOS OFFLINE-->
-        <link href="Resource/Framework/Materialize/css/icons.css" rel="stylesheet">
 
         <!-- GENERAL JS -->
         <script defer type="text/javascript" src="Resource/Script/General/General.js"></script>
