@@ -11,7 +11,7 @@ $password = (isset($_POST['password']) ? $_POST['password'] : "");
 /*DEFINICION DE OBJETOS*/
 $obj = new LogInDTO($usuario, $password);
 $conex = new LogInDAO();
-
-/* CONTROL DE ACCIONES */
+//
+///* CONTROL DE ACCIONES */
 $conex->SignIn($obj);
 

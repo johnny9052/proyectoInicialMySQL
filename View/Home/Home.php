@@ -8,12 +8,11 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title></title>
-        
+
         <script type="text/javascript" src="Resource/Script/Home/Home.js"></script>
     </head>
     <body>
         <?php
-        // put your code here
         ?>
     </body>
 </html>

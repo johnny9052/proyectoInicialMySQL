@@ -81,7 +81,8 @@ function Execute(dataSend, url, before, success) {
         },
         data: dataSend,
         success: function (data) {
-            //alert(data);
+            //alert(data);            
+            //$("#txtName").val(data);
             showLoadBar(false);
             var info = eval("(" + data + ")");
             var response = (info.res !== undefined) ? info.res : info[0].res;

@@ -23,8 +23,14 @@ class PermissionDAO {
      * @version 0.1
      */
     public function Update(PermissionDTO $obj) {
+
+        /* Se debe agregar una coma al final, para que el plsql pueda recorrerlo 
+          como un array
+         */
         $query = $this->repository->buildQuerySimply("updatepermission", array((int) $obj->getId(),
-            (string) "{" . $obj->getPermission() . "}"));
+            (string) "" . $obj->getPermission() . ","));
+        //echo $query;
+
         $this->repository->ExecuteTransaction($query);
     }
 
@@ -68,7 +74,7 @@ class PermissionDAO {
     /**
      * Determina cuales son los menus padres que futuramente contendran hijos     
      * @param Array $data Array JSON
-     * @return Array Lista unicamente con los padres, y con un espacion para
+     * @return Array Lista unicamente con los padres, y con un espacio para
      * almacenar los hijos     
      * @author Johnny Alexander Salazar
      * @version 0.1

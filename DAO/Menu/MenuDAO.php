@@ -26,9 +26,9 @@ class MenuDAO {
         $query = $this->repository->buildQuery("loadMenu", array((int) $obj->getIdRol()));
         $data = json_decode($this->repository->ExecuteReturn($query));
         //SE ENCUENTRAN LOS PADRES
-        $padres = $this->FindFather($data);
+        $padres = $this->FindFather($data);        
         //A los padres se le añaden los hijos
-        $padresHijos = $this->FindSon($padres, $data);
+        $padresHijos = $this->FindSon($padres, $data);        
         //Se construye el menu
         $menu = $this->BuildMenu($padresHijos);
         echo $menu;
@@ -65,8 +65,10 @@ class MenuDAO {
 
         $padres = array();
 
+        //echo json_encode($data);
         /* Se sacan los codigos de los padres */
         foreach ($data as $x) {
+            echo 'entre';
             if ($x->codpadre == "-1") {
                 array_push($padres, ["id" => $x->id, "nombre" => $x->nombre, "prioridad" => $x->prioridad, "hijos" => ""]);
             }
