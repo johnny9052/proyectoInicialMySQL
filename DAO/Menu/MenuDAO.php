@@ -26,9 +26,9 @@ class MenuDAO {
         $query = $this->repository->buildQuery("loadMenu", array((int) $obj->getIdRol()));
         $data = json_decode($this->repository->ExecuteReturn($query));
         //SE ENCUENTRAN LOS PADRES
-        $padres = $this->FindFather($data);        
+        $padres = $this->FindFather($data);
         //A los padres se le añaden los hijos
-        $padresHijos = $this->FindSon($padres, $data);        
+        $padresHijos = $this->FindSon($padres, $data);
         //Se construye el menu
         $menu = $this->BuildMenu($padresHijos);
         echo $menu;
@@ -52,7 +52,6 @@ class MenuDAO {
         echo $padresHijos;
     }
 
-    
     /**
      * Determina cuales son los menus padres que futuramente contendran hijos     
      * @return Array Lista unicamente con los padres, y con un espacion para
@@ -114,6 +113,13 @@ class MenuDAO {
      * @version 0.1
      */
     public function BuildMenu($padres) {
+        //Cantidad de caracteres que se visualizaran
+        $max = 15;
+        //cantidad de caracteres a omitir
+        $omitir = 3;
+        //Caracteres que muestran autocompletado
+        $completar = '..';
+
         /* Logo de la empresa */
         $menu = '<a id="logo-container"><img src="Resource/Multimedia/Images/Logo.png" class="Logo"></a>';
         /* Menu inicio */
@@ -127,14 +133,14 @@ class MenuDAO {
 
                 //INICIA EL PADRE
                 $menu.= '<li class="no-padding"><ul class="collapsible collapsible-accordion"><li>';
-                $menu.= '<a class="collapsible-header">' . $x->nombre . '<i class="mdi-navigation-arrow-drop-down"></i></a>';
+                $menu.= '<a class="collapsible-header">' .  ((strlen($x->nombre)<=$max)? substr($x->nombre,0,$max) : (substr($x->nombre,0,$max-$omitir).$completar)) . '<i class="mdi-navigation-arrow-drop-down"></i></a>';
                 $menu.= '<div class="collapsible-body"><ul>';
 
                 $hijos = json_decode(json_encode($x->hijos));
 
                 foreach ($hijos as $y) {
                     //SE AÑADE CADA HIJO POR CADA PADRE
-                    $menu.= '<li><a href="Helper/Content/Content.php?page=' . $y->codigo . '">' . $y->nombre . '</a></li>';
+                    $menu.= '<li><a href="Helper/Content/Content.php?page=' . $y->codigo . '">' . ((strlen($y->nombre)<$max)? substr($y->nombre,0,$max) : (substr($y->nombre,0,$max-$omitir).$completar)) . '</a></li>';
                     //SE CIERRA EL HIJO
                 }
 
