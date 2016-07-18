@@ -70,6 +70,7 @@ function showLoadBar(status) {
  * @version 0.2
  */
 function Execute(dataSend, url, before, success) {
+    //alert(dataSend);
     $.ajax({
         type: 'post',
         url: "Controller/" + url + ".php",
@@ -141,14 +142,19 @@ function scanInfo(type, status, form, dataPlus) {
 
     /*Inputs sencillos*/
     if (status) {
-        var campos = '#' + form + ' :input:text,\n\
-                  #' + form + ' :input:password, \n\
-                  #' + form + ' textarea, \n\
-                  #' + form + ' select';
+
+        var campos = '#' + form + ' :input,\n\
+                 #' + form + ' select, \n\
+                 #' + form + ' textarea';
+//        var campos = '#' + form + ' :input:text,\n\
+//                  #' + form + ' :input:password, \n\
+//                  #' + form + ' textarea, \n\
+//                  #' + form + ' select';
 
         $(campos).each(function () {
             var elemento = this;
             arrayParameters.push(newArg(elemento.name, elemento.value));
+            //alert("detectado");
         });
     }
 
@@ -167,6 +173,7 @@ function scanInfo(type, status, form, dataPlus) {
 
     }
 
+    //alert(arrayToObject(arrayParameters));
     return arrayToObject(arrayParameters);
 }
 
@@ -246,7 +253,7 @@ function validateForm(form) {
     });
 
     if (!status) {
-        showToast("Ingrese los datos requeridos");
+        showToast("Ingrese o valide los datos requeridos");
     }
 
     return status;
@@ -311,9 +318,16 @@ function arrayToObject(arrayParameters) {
 function cleanForm(form) {
 
     form = DefaultModal(form);
-    var campos = '#' + form + ' :input:text,\n\
-                  #' + form + ' :input:password, \n\
-                  #' + form + ' textarea';
+
+    var campos = '#' + form + ' :input,\n\
+                 #' + form + ' select, \n\
+                 #' + form + ' textarea';
+
+
+//    var campos = '#' + form + ' :input:text,\n\
+//                  #' + form + ' :input:password, \n\
+//                  #' + form + ' :input:email, \n\
+//                  #' + form + ' textarea';
 
     $(campos).each(function () {
         var elemento = this;
