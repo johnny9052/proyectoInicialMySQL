@@ -153,7 +153,13 @@ function scanInfo(type, status, form, dataPlus) {
 
         $(campos).each(function () {
             var elemento = this;
-            arrayParameters.push(newArg(elemento.name, elemento.value));
+            /*Si es un radio, retornamos 1 si esta checkeado, 0 si no*/
+            if (elemento.type === "checkbox") {
+                arrayParameters.push(newArg(elemento.name, (elemento.checked) ? 1 : 0));
+            } else {
+                arrayParameters.push(newArg(elemento.name, elemento.value));
+            }
+
             //alert("detectado");
         });
     }
